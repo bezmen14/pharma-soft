@@ -5,7 +5,8 @@ const express = require('express');
 const logger = require('morgan');
 
 const authRouter = require('./routes/auth.router');
-const {PORT} = process.env || 3001;
+const recipeRouter = require('./routes/recipe.router');
+const { PORT } = process.env || 3001;
 const app = express();
 dbConnect();
 
@@ -15,8 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/recipe', recipeRouter);
 
 app.listen(PORT, () => {
   console.log('Server has been started on PORT', PORT)
 })
-
